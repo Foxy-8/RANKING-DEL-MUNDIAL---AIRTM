@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ranking Mundial AirTM — Partido #15</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&family=Inter:wght@400;600;700;800&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:#06090F;
+  font-family:'Inter',sans-serif;
+  color:#E2E8F0;
+  padding:0;
+}
+
+/* ══ OUTER WRAPPER ══ */
+.page{
+  width:720px;
+  margin:0 auto;
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(0,180,216,.07) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 30% at 20% 100%, rgba(255,107,53,.05) 0%, transparent 60%),
+    #06090F;
+  padding-bottom:36px;
+}
+
+/* ══ HEADER ══ */
+.header{
+  position:relative;
+  background:linear-gradient(160deg,#07131F 0%,#0A1D2E 60%,#060E18 100%);
+  border-bottom:2px solid #00B4D8;
+  overflow:hidden;
+  padding:32px 40px 28px;
+  text-align:center;
+}
+.header::before{
+  content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);
+  width:700px;height:400px;
+  background:radial-gradient(ellipse,rgba(0,180,216,.12) 0%,transparent 65%);
+  pointer-events:none;
+}
+.header::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,#00B4D8 30%,#FFD700 50%,#00B4D8 70%,transparent);
+}
+.match-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,107,53,.1);border:1px solid rgba(255,107,53,.35);
+  border-radius:999px;padding:5px 18px;
+  font-family:'Share Tech Mono',monospace;font-size:11px;
+  color:#FF6B35;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;
+}
+.match-pill-dot{width:6px;height:6px;border-radius:50%;background:#FF6B35;animation:blink 1.8s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2};}
+
+.h-title{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:30px;letter-spacing:-0.5px;line-height:1;
+  background:linear-gradient(90deg,#fff 0%,#00B4D8 45%,#FFD700 75%,#fff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.h-sub{
+  font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;
+  color:#00B4D8;letter-spacing:3px;text-transform:uppercase;margin-top:6px;
+}
+.h-match{
+  margin-top:14px;display:inline-flex;align-items:center;gap:0;
+  background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;overflow:hidden;font-size:13px;font-weight:700;
+}
+.h-team{padding:8px 20px;letter-spacing:.5px;}
+.h-team.sa{color:#40C057;}
+.h-team.uy{color:#74C0FC;}
+.h-vs{
+  padding:8px 10px;background:rgba(255,215,0,.08);
+  font-family:'Orbitron',sans-serif;font-size:11px;color:#FFD700;font-weight:900;
+  border-left:1px solid rgba(255,255,255,.07);border-right:1px solid rgba(255,255,255,.07);
+}
+.h-result{padding:8px 14px;background:rgba(34,197,94,.08);
+  color:#22C55E;font-family:'Share Tech Mono',monospace;font-size:12px;
+  border-left:1px solid rgba(255,255,255,.07);}
+
+/* ══ STATS ROW ══ */
+.stats-row{
+  display:flex;justify-content:center;gap:0;
+  border-bottom:1px solid #111E2E;
+  background:rgba(0,180,216,.03);
+}
+.st{
+  flex:1;text-align:center;padding:14px 8px;
+  border-right:1px solid #111E2E;
+}
+.st:last-child{border-right:none;}
+.st-val{font-family:'Orbitron',sans-serif;font-size:22px;font-weight:700;color:#00B4D8;}
+.st-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;color:#4A6580;letter-spacing:2px;text-transform:uppercase;margin-top:2px;}
+
+/* ══ PODIUM ══ */
+.podium-wrap{
+  display:flex;align-items:flex-end;justify-content:center;
+  gap:12px;padding:28px 40px 8px;
+}
+.pod{display:flex;flex-direction:column;align-items:center;flex:1;max-width:180px;}
+.pod-crown{font-size:22px;margin-bottom:4px;}
+.pod-name{font-size:12px;font-weight:800;text-align:center;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;margin-bottom:3px;}
+.pod-pts-label{font-family:'Share Tech Mono',monospace;font-size:10px;color:#4A6580;margin-bottom:7px;}
+.pod-block{width:100%;display:flex;align-items:center;justify-content:center;
+  font-family:'Orbitron',sans-serif;font-weight:900;font-size:26px;border-radius:8px 8px 0 0;}
+.pod1 .pod-name{color:#FFD700;}
+.pod1 .pod-block{height:110px;background:linear-gradient(180deg,rgba(255,215,0,.18),rgba(255,215,0,.03));border:1px solid rgba(255,215,0,.3);color:#FFD700;}
+.pod2 .pod-name{color:#C0C0C0;}
+.pod2 .pod-block{height:82px;background:linear-gradient(180deg,rgba(192,192,192,.15),rgba(192,192,192,.02));border:1px solid rgba(192,192,192,.25);color:#C0C0C0;}
+.pod3 .pod-name{color:#CD7F32;}
+.pod3 .pod-block{height:64px;background:linear-gradient(180deg,rgba(205,127,50,.15),rgba(205,127,50,.02));border:1px solid rgba(205,127,50,.25);color:#CD7F32;}
+
+/* ══ NEW SECTION (acertantes highlight) ══ */
+.new-section{
+  margin:16px 32px;
+  background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(0,180,216,.06));
+  border:1px solid rgba(34,197,94,.2);border-radius:12px;padding:14px 18px;
+}
+.new-title{
+  font-family:'Share Tech Mono',monospace;font-size:9px;
+  color:#22C55E;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;
+  display:flex;align-items:center;gap:6px;
+}
+.new-title::after{content:'';flex:1;height:1px;background:rgba(34,197,94,.2);}
+.new-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.new-chip{
+  font-size:12px;font-weight:700;padding:4px 14px;border-radius:999px;
+  background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);color:#22C55E;
+  display:flex;align-items:center;gap:5px;
+}
+.new-chip-arrow{font-size:10px;color:rgba(34,197,94,.6);}
+
+/* ══ RANKING TABLE ══ */
+.rank-section{padding:0 32px;}
+
+.tier-hdr{
+  display:flex;align-items:center;gap:10px;
+  padding:14px 0 6px;
+  font-family:'Share Tech Mono',monospace;font-size:9px;
+  color:#4A6580;letter-spacing:2.5px;text-transform:uppercase;
+}
+.tier-hdr::after{content:'';flex:1;height:1px;background:#111E2E;}
+
+.row{
+  display:grid;grid-template-columns:38px 24px 1fr 42px;
+  align-items:center;padding:7px 10px;gap:6px;
+  border-radius:6px;margin-bottom:2px;
+  transition:background .1s;
+  border:1px solid transparent;
+}
+.row:hover{background:rgba(255,255,255,.025);}
+.row.acertante{
+  background:rgba(34,197,94,.04);
+  border-color:rgba(34,197,94,.12);
+}
+.r-pos{font-family:'Share Tech Mono',monospace;font-size:11px;color:#4A6580;text-align:center;}
+.r-icon{font-size:12px;text-align:center;}
+.r-name{font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.r-pts{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;text-align:right;}
+.r-new{font-family:'Share Tech Mono',monospace;font-size:8px;color:#22C55E;
+  background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);
+  border-radius:4px;padding:1px 5px;margin-left:4px;}
+
+/* Tier colors */
+.tg .r-pts{color:#FFD700;}  .tg .r-pos{color:#A0822A;}
+.tf .r-pts{color:#FF6B35;}  .tf .r-pos{color:#7A4020;}
+.tl .r-pts{color:#00B4D8;}  .tl .r-pos{color:#1A5566;}
+.tt .r-pts{color:#A78BFA;}  .tt .r-pos{color:#4A3A7A;}
+.tz .r-pts{color:#FACC15;}  .tz .r-pos{color:#6A5010;}
+.th .r-pts{color:#94A3B8;}  .th .r-pos{color:#3A4A5A;}
+.tr .r-pts{color:#EF4444;}  .tr .r-pos{color:#6A2020;}
+.tr .r-name{opacity:.7;}
+
+/* ══ FOOTER ══ */
+.footer{
+  text-align:center;padding:20px 32px 0;
+  font-family:'Share Tech Mono',monospace;font-size:10px;
+  color:#2A3D52;letter-spacing:1px;
+  border-top:1px solid #0D1B2A;margin-top:20px;
+}
+.footer strong{color:#00B4D8;}
+.footer-line{
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  margin-top:10px;flex-wrap:wrap;
+}
+.f-pill{background:#0D1B2A;border:1px solid #111E2E;border-radius:6px;padding:5px 14px;font-size:9px;letter-spacing:1px;}
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="match-pill"><span class="match-pill-dot"></span>PARTIDO #15 · ACTUALIZADO</div>
+    <div class="h-title">RANKING MUNDIAL</div>
+    <div class="h-sub">AirTM</div>
+    <div style="margin-top:14px;">
+      <div class="h-match">
+        <span class="h-team sa">🇸🇦 Arabia Saudita</span>
+        <span class="h-vs">VS</span>
+        <span class="h-team uy">🇺🇾 Uruguay</span>
+        <span class="h-result">✅ EMPATE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="st"><div class="st-val">96</div><div class="st-lbl">Participantes</div></div>
+    <div class="st"><div class="st-val">15</div><div class="st-lbl">Partidos</div></div>
+    <div class="st"><div class="st-val">8</div><div class="st-lbl">Pts Máx</div></div>
+    <div class="st"><div class="st-val">5</div><div class="st-lbl">Acertantes</div></div>
+  </div>
+
+  <!-- PODIUM -->
+  <div class="podium-wrap">
+    <!-- 2nd -->
+    <div class="pod pod2">
+      <div class="pod-crown">🥈</div>
+      <div class="pod-name">Hortencio Teles</div>
+      <div class="pod-pts-label">8 PTS</div>
+      <div class="pod-block">2</div>
+    </div>
+    <!-- 1st -->
+    <div class="pod pod1">
+      <div class="pod-crown">🥇</div>
+      <div class="pod-name">andy23</div>
+      <div class="pod-pts-label">8 PTS</div>
+      <div class="pod-block">1</div>
+    </div>
+    <!-- 3rd -->
+    <div class="pod pod3">
+      <div class="pod-crown">🥉</div>
+      <div class="pod-name">Ale</div>
+      <div class="pod-pts-label">8 PTS</div>
+      <div class="pod-block">3</div>
+    </div>
+  </div>
+
+  <!-- ACERTANTES HIGHLIGHT -->
+  <div class="new-section">
+    <div class="new-title">⚡ Acertantes del Partido #15</div>
+    <div class="new-chips">
+      <span class="new-chip">fernandoschiro <span class="new-chip-arrow">↑8</span></span>
+      <span class="new-chip">Lanzerr <span class="new-chip-arrow">↑7</span></span>
+      <span class="new-chip">Alejandrooo <span class="new-chip-arrow">↑7</span></span>
+      <span class="new-chip">Riuk08 <span class="new-chip-arrow">↑7</span></span>
+      <span class="new-chip">55022 <span class="new-chip-arrow">↑6</span></span>
+    </div>
+  </div>
+
+  <!-- FULL RANKING -->
+  <div class="rank-section">
+
+    <div class="tier-hdr">🥇 LÍDERES — 8 PTS</div>
+    <div class="row tg"><span class="r-pos">1</span><span class="r-icon">🥇</span><span class="r-name">andy23</span><span class="r-pts">8</span></div>
+    <div class="row tg"><span class="r-pos">2</span><span class="r-icon">🥈</span><span class="r-name">Hortencio Teles</span><span class="r-pts">8</span></div>
+    <div class="row tg"><span class="r-pos">3</span><span class="r-icon">🥉</span><span class="r-name">Ale</span><span class="r-pts">8</span></div>
+    <div class="row tg acertante"><span class="r-pos">4</span><span class="r-icon">🥇</span><span class="r-name">fernandoschiro<span class="r-new">+1</span></span><span class="r-pts">8</span></div>
+
+    <div class="tier-hdr">🔥 PERSEGUIDORES — 7 PTS</div>
+    <div class="row tf"><span class="r-pos">5</span><span class="r-icon">🔥</span><span class="r-name">Galo</span><span class="r-pts">7</span></div>
+    <div class="row tf"><span class="r-pos">6</span><span class="r-icon">🔥</span><span class="r-name">Daniel M.</span><span class="r-pts">7</span></div>
+    <div class="row tf"><span class="r-pos">7</span><span class="r-icon">🔥</span><span class="r-name">eduar2112</span><span class="r-pts">7</span></div>
+    <div class="row tf"><span class="r-pos">8</span><span class="r-icon">🔥</span><span class="r-name">Jorge Orta ✔</span><span class="r-pts">7</span></div>
+    <div class="row tf"><span class="r-pos">9</span><span class="r-icon">🔥</span><span class="r-name">Marleni💫</span><span class="r-pts">7</span></div>
+    <div class="row tf"><span class="r-pos">10</span><span class="r-icon">🔥</span><span class="r-name">Rose 🌹</span><span class="r-pts">7</span></div>
+    <div class="row tf"><span class="r-pos">11</span><span class="r-icon">🔥</span><span class="r-name">dircnz</span><span class="r-pts">7</span></div>
+    <div class="row tf"><span class="r-pos">12</span><span class="r-icon">🔥</span><span class="r-name">Avthoull</span><span class="r-pts">7</span></div>
+    <div class="row tf acertante"><span class="r-pos">13</span><span class="r-icon">🔥</span><span class="r-name">Lanzerr<span class="r-new">+1</span></span><span class="r-pts">7</span></div>
+    <div class="row tf acertante"><span class="r-pos">14</span><span class="r-icon">🔥</span><span class="r-name">Alejandrooo<span class="r-new">+1</span></span><span class="r-pts">7</span></div>
+    <div class="row tf acertante"><span class="r-pos">15</span><span class="r-icon">🔥</span><span class="r-name">Riuk08<span class="r-new">+1</span></span><span class="r-pts">7</span></div>
+
+    <div class="tier-hdr">📋 EN ZONA — 6 PTS</div>
+    <div class="row tl"><span class="r-pos">16</span><span class="r-icon">📋</span><span class="r-name">chelo✅</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">17</span><span class="r-icon">📋</span><span class="r-name">Yonsaf</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">18</span><span class="r-icon">📋</span><span class="r-name">sanfraa</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">19</span><span class="r-icon">📋</span><span class="r-name">Omarmd10 🦸‍♂️🪐</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">20</span><span class="r-icon">📋</span><span class="r-name">Andrés31</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">21</span><span class="r-icon">📋</span><span class="r-name">Lex Luthor</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">22</span><span class="r-icon">📋</span><span class="r-name">Alexis Quint</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">23</span><span class="r-icon">📋</span><span class="r-name">MS</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">24</span><span class="r-icon">📋</span><span class="r-name">Santi</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">25</span><span class="r-icon">📋</span><span class="r-name">juan</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">26</span><span class="r-icon">📋</span><span class="r-name">Manuel_11Val</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">27</span><span class="r-icon">📋</span><span class="r-name">dinulahasan</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">28</span><span class="r-icon">📋</span><span class="r-name">CAMBIOSYRVINGLCR</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">29</span><span class="r-icon">📋</span><span class="r-name">JesusDp</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">30</span><span class="r-icon">📋</span><span class="r-name">Carlos Salazar</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">31</span><span class="r-icon">📋</span><span class="r-name">JoseGS</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">32</span><span class="r-icon">📋</span><span class="r-name">William</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">33</span><span class="r-icon">📋</span><span class="r-name">Mahmoud Abulftooh</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">34</span><span class="r-icon">📋</span><span class="r-name">YariEconomia</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">35</span><span class="r-icon">📋</span><span class="r-name">Ledoux</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">36</span><span class="r-icon">📋</span><span class="r-name">Kelvin</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">37</span><span class="r-icon">📋</span><span class="r-name">Patry</span><span class="r-pts">6</span></div>
+    <div class="row tl"><span class="r-pos">38</span><span class="r-icon">📋</span><span class="r-name">Humberto</span><span class="r-pts">6</span></div>
+    <div class="row tl acertante"><span class="r-pos">39</span><span class="r-icon">📋</span><span class="r-name">55022<span class="r-new">+1</span></span><span class="r-pts">6</span></div>
+
+    <div class="tier-hdr">🎯 MITAD DE TABLA — 5 PTS</div>
+    <div class="row tt"><span class="r-pos">40</span><span class="r-icon">🎯</span><span class="r-name">Alduvi Martinez</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">41</span><span class="r-icon">🎯</span><span class="r-name">2884</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">42</span><span class="r-icon">🎯</span><span class="r-name">Fafi</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">43</span><span class="r-icon">🎯</span><span class="r-name">langyto</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">44</span><span class="r-icon">🎯</span><span class="r-name">Jhanny Peñalver</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">45</span><span class="r-icon">🎯</span><span class="r-name">Albertg</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">46</span><span class="r-icon">🎯</span><span class="r-name">Juan Pablo Garcia</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">47</span><span class="r-icon">🎯</span><span class="r-name">Marian</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">48</span><span class="r-icon">🎯</span><span class="r-name">soygerman</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">49</span><span class="r-icon">🎯</span><span class="r-name">Pompita</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">50</span><span class="r-icon">🎯</span><span class="r-name">Jersson</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">51</span><span class="r-icon">🎯</span><span class="r-name">Sarfaraz</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">52</span><span class="r-icon">🎯</span><span class="r-name">Silvano Ngola 2.0</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">53</span><span class="r-icon">🎯</span><span class="r-name">Vincent Rono</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">54</span><span class="r-icon">🎯</span><span class="r-name">Enrique_Ayala22</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">55</span><span class="r-icon">🎯</span><span class="r-name">Rose07/</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">56</span><span class="r-icon">🎯</span><span class="r-name">Michaeltipo</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">57</span><span class="r-icon">🎯</span><span class="r-name">bekid11</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">58</span><span class="r-icon">🎯</span><span class="r-name">Jose Luzmaira</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">59</span><span class="r-icon">🎯</span><span class="r-name">Yeison</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">60</span><span class="r-icon">🎯</span><span class="r-name">Nanamac</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">61</span><span class="r-icon">🎯</span><span class="r-name">johander</span><span class="r-pts">5</span></div>
+    <div class="row tt"><span class="r-pos">62</
